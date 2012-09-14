@@ -21,7 +21,7 @@ debug.composition.7x27A.type=mdp
 debug.composition.7x25A.type=mdp
 debug.composition.8x25.type=dyn
 dalvik.vm.heapsize=24m
-
+ro.sf.lcd_density=160
 #
 # system props for the cne module
 #
