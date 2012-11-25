@@ -191,3 +191,7 @@ dev.pm.dyn_sample_period=700000
 # System prop for enabling the cdrom feature
 #
 persist.service.cdrom.enable=1
+#
+# System prop for enabling forced sound in camera start/stop tones
+#
+ro.camera.sound.forced=1
