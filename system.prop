@@ -196,6 +196,11 @@ persist.service.cdrom.enable=1
 #
 ro.camera.sound.forced=1
 #
+# Snapdragon value add features
+#
+ro.qc.sdk.camera.facialproc=false
+ro.qc.sdk.gestures.camera=false
+#
 # Enable swaprect feature
 #
 debug.sf.swaprect=1
