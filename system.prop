@@ -199,3 +199,9 @@ ro.camera.sound.forced=1
 # Enable swaprect feature
 #
 debug.sf.swaprect=1
+
+#
+#snapdragon value add features
+#
+ro.qc.sdk.camera.facialproc=false
+ro.qc.sdk.gestures.camera=false
