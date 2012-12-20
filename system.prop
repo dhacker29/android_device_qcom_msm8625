@@ -22,6 +22,7 @@ debug.composition.7x25A.type=mdp
 debug.composition.8x25.type=dyn
 debug.hwc.dynThreshold=1.91
 dalvik.vm.heapsize=24m
+persist.gralloc.cp.level3=1
 #
 # system props for the cne module
 #
