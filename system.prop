@@ -20,7 +20,6 @@ debug.sf.hw=1
 debug.composition.7x27A.type=mdp
 debug.composition.7x25A.type=mdp
 debug.composition.8x25.type=dyn
-debug.hwc.dynThreshold=1.91
 dalvik.vm.heapsize=24m
 persist.gralloc.cp.level3=1
 #
