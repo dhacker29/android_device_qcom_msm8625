@@ -25,15 +25,6 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# mount point	fstype		device			[device2]		[length=]
+dev_mount sdcard /storage/sdcard0 auto /devices/platform/msm_sdcc.1/mmc_host
 
-/boot            emmc        /dev/block/mmcblk0p17
-/cache           ext4        /dev/block/mmcblk0p19
-/data            ext4        /dev/block/mmcblk0p22    length=-16384
-/recovery        emmc        /dev/block/mmcblk0p14
-/misc            emmc        /dev/block/mmcblk0p11
-/sdcard          vfat        /dev/block/mmcblk1p1     /dev/block/mmcblk1
-/system          ext4        /dev/block/mmcblk0p18
-/sys_boot        vfat        /dev/block/mmcblk0p3
-/FOTA            emmc        /dev/block/mmcblk0p20
-/sdcard1         vfat        /dev/block/mmcblk0p21
+dev_mount emmc /storage/emmc 21 /devices/platform/msm_sdcc.3/mmc_host/mmc0
