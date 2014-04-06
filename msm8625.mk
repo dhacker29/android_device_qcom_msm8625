@@ -5,6 +5,10 @@ DEVICE_PACKAGE_OVERLAYS += device/qcom/msm8625/overlay
 PRODUCT_NAME := msm8625
 PRODUCT_DEVICE := msm8625
 
+PRODUCT_PACKAGES += \
+    cfg80211.ko \
+    ath6kl_sdio.ko \
+
 PRODUCT_COPY_FILES += \
     device/qcom/msm8625/fstab.msm7627a:/root/fstab.msm7627a \
     device/qcom/msm8625/init.qcom.rc:/root/init.qcom.rc \
