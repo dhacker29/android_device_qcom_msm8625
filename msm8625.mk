@@ -8,6 +8,8 @@ PRODUCT_DEVICE := msm8625
 PRODUCT_PACKAGES += \
     cfg80211.ko \
     ath6kl_sdio.ko \
+    camera.msm7627a.so \
+    sensors.msm7627a.so
 
 PRODUCT_COPY_FILES += \
     device/qcom/msm8625/fstab.msm7627a:/root/fstab.msm7627a \
