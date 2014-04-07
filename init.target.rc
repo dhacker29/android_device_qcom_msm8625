@@ -186,7 +186,7 @@ service psensorCal /system/bin/psensorCal
 
 on emmc-fs
     # Failure to mount any partition in fstab file results in failure to launch late-start class.
-    mount_all fstab.qcom
+    mount_all fstab.msm7627a
 
 on fs
 # mount mtd partitions
