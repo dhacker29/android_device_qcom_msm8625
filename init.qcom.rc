@@ -253,11 +253,6 @@ service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
     user root
     oneshot
 
-service block_tuning-sh /system/bin/sh /init.block_tuning.sh
-    class core
-    user root
-    oneshot
-
 service qcom-c_main-sh /system/bin/sh /init.qcom.class_main.sh
     class main
     user root
@@ -524,10 +519,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class late_start
     user root
     disabled
-    oneshot
-
-service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
-    class late_start
     oneshot
 
 service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh

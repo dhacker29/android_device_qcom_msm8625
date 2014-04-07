@@ -60,12 +60,7 @@ on property:ro.boot.emmc=true
     start nvbk_storage
 
 on early-init
-#    mkdir /storage/emmc 0000 system system
-
-service ft_fwupdate /system/bin/sh /system/etc/init.ft.fwupdate.sh
-    class late_start
-    user root
-    oneshot
+    mkdir /storage/emmc 0000 system system
 
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
     class late_start
