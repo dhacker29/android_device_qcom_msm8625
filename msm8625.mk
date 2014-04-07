@@ -18,7 +18,7 @@ PRODUCT_COPY_FILES += \
     device/qcom/msm8625/fstab.msm7627a:/root/fstab.msm7627a \
     device/qcom/msm8625/init.qcom.rc:/root/init.qcom.rc \
     device/qcom/msm8625/init.target.rc:/root/init.target.rc \
-    device/qcom/msm8625/recovery_nand.fstab:/system/etc/recovery_nand.fstab \
+    device/qcom/msm8625/recovery_nand.fstab:/root/recovery_nand.fstab \
     device/qcom/msm8625/ueventd.qcom.rc:/root/ueventd.qcom.rc \
     device/qcom/msm8625/vold.fstab:/system/etc/vold.fstab
 
