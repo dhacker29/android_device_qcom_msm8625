@@ -22,4 +22,9 @@ PRODUCT_COPY_FILES += \
     device/qcom/msm8625/ueventd.qcom.rc:/root/ueventd.qcom.rc \
     device/qcom/msm8625/vold.fstab:/system/etc/vold.fstab
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.dsds.enabled=dsds \
+    persist.multisim.config=dsds \
+    dalvik.vm.execution-mode=int:fast
+
 $(call inherit-product-if-exists, vendor/nokia/normandy/normandy-vendor.mk)
