@@ -210,3 +210,9 @@ debug.sf.swaprect=1
 #
 ro.qc.sdk.camera.facialproc=false
 ro.qc.sdk.gestures.camera=false
+
+# set default mtu to 1380
+persist.data_netmgrd_mtu=1380
+
+#enable read network preference from NV 10
+persist.radio.mode_pref_nv10=1
