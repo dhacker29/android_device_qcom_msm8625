@@ -12,7 +12,8 @@ PRODUCT_PACKAGES += \
     cfg80211.ko \
     ath6kl_sdio.ko \
     camera.msm7627a.so \
-    sensors.msm7627a.so
+    sensors.msm7627a.so \
+    libnl_2
 
 PRODUCT_COPY_FILES += \
     device/qcom/msm8625/apns-conf.xml:/system/etc/apns-conf.xml \
