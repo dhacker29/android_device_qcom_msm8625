@@ -1,6 +1,6 @@
-DEVICE_PACKAGE_OVERLAYS += device/qcom/msm8625/overlay
-
 include device/qcom/msm7627a/msm7627a.mk
+
+DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8625/overlay
 
 PRODUCT_NAME := msm8625
 PRODUCT_DEVICE := msm8625
