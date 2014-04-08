@@ -28,6 +28,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.dsds.enabled=dsds \
     persist.multisim.config=dsds \
-    dalvik.vm.execution-mode=int:fast
+    dalvik.vm.execution-mode=int:fast \
+    persist.sys.usb.config=mtp,adb
 
 $(call inherit-product-if-exists, vendor/nokia/normandy/normandy-vendor.mk)
