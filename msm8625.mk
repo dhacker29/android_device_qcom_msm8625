@@ -13,7 +13,6 @@ PRODUCT_PACKAGES += \
     ath6kl_sdio.ko \
     audio.primary.msm7627a.so \
     camera.msm7627a.so \
-    sensors.msm7627a.so \
     libnl_2
 
 PRODUCT_COPY_FILES += \
