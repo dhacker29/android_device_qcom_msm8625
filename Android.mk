@@ -7,4 +7,5 @@ LOCAL_COPY_HEADERS            := ../../../../device/qcom/msm8625/commondefs_rpcg
 #Copy the headers for gps
 include $(BUILD_COPY_HEADERS)
 
+include device/qcom/msm8625/srs/Android.mk
 endif
