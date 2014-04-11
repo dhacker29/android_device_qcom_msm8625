@@ -19,6 +19,7 @@ PRODUCT_COPY_FILES += \
     device/qcom/msm8625/apns-conf.xml:/system/etc/apns-conf.xml \
     device/qcom/msm8625/fstab.msm7627a:/root/fstab.msm7627a \
     device/qcom/msm8625/ft6306.kl:/system/usr/keylayout/ft6306.kl \
+    device/qcom/msm8625/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
     device/qcom/msm8625/init.qcom.rc:/root/init.qcom.rc \
     device/qcom/msm8625/init.target.rc:/root/init.target.rc \
     device/qcom/msm8625/recovery_nand.fstab:/recovery/root/etc/recovery_nand.fstab \
