@@ -9,15 +9,16 @@ PRODUCT_MODEL := Nokia_X
 PRODUCT_MANUFACTURER := Nokia
 
 PRODUCT_PACKAGES += \
-    cfg80211.ko \
     ath6kl_sdio.ko \
     audio.primary.msm7627a.so \
     camera.msm7627a.so \
+    cfg80211.ko \
     libnl_2
 
 PRODUCT_COPY_FILES += \
     device/qcom/msm8625/apns-conf.xml:/system/etc/apns-conf.xml \
     device/qcom/msm8625/fstab.msm7627a:/root/fstab.msm7627a \
+    device/qcom/msm8625/ft6306.kl:/system/usr/keylayout/ft6306.kl \
     device/qcom/msm8625/init.qcom.rc:/root/init.qcom.rc \
     device/qcom/msm8625/init.target.rc:/root/init.target.rc \
     device/qcom/msm8625/recovery_nand.fstab:/recovery/root/etc/recovery_nand.fstab \
