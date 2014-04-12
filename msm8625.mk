@@ -14,6 +14,12 @@ PRODUCT_PACKAGES += \
     cfg80211.ko \
     libnl_2
 
+# Extras
+PRODUCT_PACKAGES += \
+    Trebuchet \
+    Superuser \
+    su
+
 PRODUCT_COPY_FILES += \
     device/qcom/msm8625/apns-conf.xml:/system/etc/apns-conf.xml \
     device/qcom/msm8625/AudioFilter.csv:/system/etc/AudioFilter.csv \
