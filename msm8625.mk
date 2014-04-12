@@ -10,7 +10,6 @@ PRODUCT_MANUFACTURER := Nokia
 
 PRODUCT_PACKAGES += \
     ath6kl_sdio.ko \
-    audio.primary.msm7627a.so \
     camera.msm7627a.so \
     cfg80211.ko \
     libnl_2
