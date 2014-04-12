@@ -1,0 +1,70 @@
+From a9a94b23e555b4413c752dd5df029a6f644601d4 Mon Sep 17 00:00:00 2001
+From: dhacker29 <dhackerdvm@gmail.com>
+Date: Sat, 12 Apr 2014 03:10:24 -0500
+Subject: [PATCH] Add header
+
+Change-Id: I38192f3d88c332a378f6a46c268e51bff5c32435
+---
+ .../inc/commondefs_rpcgen_rpc.h                    | 50 ++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+ create mode 100644 loc_api/libloc_api-rpc-50001/libloc_api-rpc-stub/inc/commondefs_rpcgen_rpc.h
+
+diff --git a/loc_api/libloc_api-rpc-50001/libloc_api-rpc-stub/inc/commondefs_rpcgen_rpc.h b/loc_api/libloc_api-rpc-50001/libloc_api-rpc-stub/inc/commondefs_rpcgen_rpc.h
+new file mode 100644
+index 0000000..77b10a7
+--- /dev/null
++++ b/loc_api/libloc_api-rpc-50001/libloc_api-rpc-stub/inc/commondefs_rpcgen_rpc.h
+@@ -0,0 +1,50 @@
++#ifndef COMMONDEFS_RPCGEN_RPC_H
++#define COMMONDEFS_RPCGEN_RPC_H
++
++typedef bool_t rpc_boolean;
++
++typedef u_long rpc_uint32;
++
++typedef u_short rpc_uint16;
++
++typedef u_char rpc_uint8;
++
++typedef long rpc_int32;
++
++typedef u_char rpc_byte;
++
++typedef u_quad_t rpc_uint64;
++
++int xdr_rpc_int32 (void *xdrs, void *objp);
++int xdr_rpc_uint32 (void *xdrs, void *objp);
++int xdr_rpc_uint64 (void *xdrs, void *objp);
++int xdr_rpc_uint16 (void *xdrs, void *objp);
++//int xdr_float (void *xdrs, void *objp);
++//int xdr_double (void *xdrs, void *objp);
++int xdr_rpc_boolean (void *xdrs, void *objp);
++
++
++ 
++/*
++typedef rpc_int32 rpc_loc_client_handle_type;
++
++typedef rpc_uint64 rpc_loc_event_mask_type;
++
++typedef rpc_uint64 rpc_loc_position_valid_mask_type;
++
++typedef rpc_uint32 rpc_loc_pos_technology_mask_type;
++
++typedef bool rpc_boolean;
++typedef unsigned long rpc_uint32;
++
++typedef unsigned short rpc_uint16;
++
++typedef unsigned char rpc_uint8;
++
++typedef long rpc_int32;
++
++typedef unsigned char rpc_byte;
++*/
++
++#endif /* COMMONDEFS_RPCGEN_RPC_H */
++
+-- 
+1.8.3.2
+

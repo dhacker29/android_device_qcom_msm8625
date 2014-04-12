@@ -1,0 +1,52 @@
+From 5559e643b44e2244cafa2efd5fae481ddb217971 Mon Sep 17 00:00:00 2001
+From: dhacker29 <dhackerdvm@gmail.com>
+Date: Tue, 8 Apr 2014 10:31:06 +0200
+Subject: [PATCH] Launch the msim settings when the new card dialog appears
+
+Also use holo style
+
+Change-Id: Ifedd30d4365e7a52b507eb1d70fdd70a827b12b3
+---
+ AndroidManifest.xml                             | 2 +-
+ src/com/android/phone/msim/SetSubscription.java | 5 ++++-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 68b983a..8972068 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -652,7 +652,7 @@
+ 
+         <activity android:name="SetSubscription"
+             android:label="@string/set_subscription"
+-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
++            android:theme="@android:style/Theme.Holo.Dialog"
+             android:configChanges="mcc|mnc|orientation|keyboardHidden">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+diff --git a/src/com/android/phone/msim/SetSubscription.java b/src/com/android/phone/msim/SetSubscription.java
+index cb83764..29ed070 100644
+--- a/src/com/android/phone/msim/SetSubscription.java
++++ b/src/com/android/phone/msim/SetSubscription.java
+@@ -95,7 +95,7 @@ public class SetSubscription extends PreferenceActivity implements View.OnClickL
+     public void onCreate(Bundle icicle) {
+         boolean newCardNotify = getIntent().getBooleanExtra("NOTIFY_NEW_CARD_AVAILABLE", false);
+         if (!newCardNotify) {
+-            setTheme(android.R.style.Theme);
++            setTheme(android.R.style.Theme_Holo);
+         }
+         super.onCreate(icicle);
+ 
+@@ -168,6 +168,9 @@ public class SetSubscription extends PreferenceActivity implements View.OnClickL
+             .setIcon(android.R.drawable.ic_dialog_alert)
+             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                     public void onClick(DialogInterface dialog, int whichButton) {
++                        Intent msimSettings = new Intent("com.android.settings.MULTI_SIM_SETTINGS");
++                        msimSettings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
++                        startActivity(msimSettings);
+                         Log.d(TAG, "new card dialog box:  onClick");
+                         //finish();
+                     }
+-- 
+1.8.3.2
+

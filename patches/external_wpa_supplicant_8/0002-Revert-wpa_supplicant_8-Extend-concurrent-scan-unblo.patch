@@ -1,0 +1,42 @@
+From 7ce5edd88f8f287288047823eb1dae5d24e9b83b Mon Sep 17 00:00:00 2001
+From: dhacker29 <dhackerdvm@gmail.com>
+Date: Mon, 7 Apr 2014 10:38:25 +0200
+Subject: [PATCH 2/2] Revert "wpa_supplicant_8:Extend concurrent scan unblock
+ ."
+
+This reverts commit c7dad76f6028498c3dd60c24f25f2336efa0ce75.
+---
+ wpa_supplicant/p2p_supplicant.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/wpa_supplicant/p2p_supplicant.c b/wpa_supplicant/p2p_supplicant.c
+index b23eb9f..4f64558 100644
+--- a/wpa_supplicant/p2p_supplicant.c
++++ b/wpa_supplicant/p2p_supplicant.c
+@@ -2506,7 +2506,6 @@ void wpas_p2p_deinit(struct wpa_supplicant *wpa_s)
+ 
+ 	os_free(wpa_s->go_params);
+ 	wpa_s->go_params = NULL;
+-	wpas_p2p_unblock_concurrent_scan(wpa_s);
+ 	eloop_cancel_timeout(wpas_p2p_group_formation_timeout, wpa_s, NULL);
+ 	eloop_cancel_timeout(wpas_p2p_join_scan, wpa_s, NULL);
+ 	eloop_cancel_timeout(wpas_p2p_pd_before_join_timeout, wpa_s, NULL);
+@@ -4718,7 +4717,6 @@ int wpas_p2p_cancel(struct wpa_supplicant *wpa_s)
+ 				   "formation found - cancelling",
+ 				   wpa_s->ifname);
+ 			found = 1;
+-			wpas_p2p_unblock_concurrent_scan(wpa_s);
+ 			eloop_cancel_timeout(wpas_p2p_group_formation_timeout,
+ 					     wpa_s->parent, NULL);
+ 			wpas_p2p_group_delete(wpa_s, 0);
+@@ -4814,7 +4812,6 @@ void wpas_p2p_network_removed(struct wpa_supplicant *wpa_s,
+ 				 wpa_s->parent, NULL) > 0) {
+ 		wpa_printf(MSG_DEBUG, "P2P: Canceled group formation due to "
+ 			   "P2P group network getting removed");
+-		wpas_p2p_unblock_concurrent_scan(wpa_s);
+ #ifdef ANDROID_P2P
+ 		/* Give time for any Pending WPS Frame exchange */
+ 		eloop_register_timeout(5, 0, wpas_p2p_group_formation_timeout,
+-- 
+1.8.3.2
+

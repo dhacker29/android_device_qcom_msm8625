@@ -1,0 +1,26 @@
+From ef683e07450c73c4f7fa7dd9ba5ca5a8e3690ddf Mon Sep 17 00:00:00 2001
+From: dhacker29 <dhackerdvm@gmail.com>
+Date: Thu, 10 Apr 2014 23:52:33 -0500
+Subject: [PATCH 2/2] Don't assert device
+
+Change-Id: Iae73537d9030910f22a31eaf0840fab2e3ab4c01
+---
+ tools/releasetools/ota_from_target_files | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/releasetools/ota_from_target_files b/tools/releasetools/ota_from_target_files
+index b0dfa54..bd97e49 100755
+--- a/tools/releasetools/ota_from_target_files
++++ b/tools/releasetools/ota_from_target_files
+@@ -313,7 +313,7 @@ def SignOutput(temp_zip_name, output_zip_name):
+ 
+ def AppendAssertions(script, input_zip):
+   device = GetBuildProp("ro.product.device", input_zip)
+-  script.AssertDevice(device)
++#  script.AssertDevice(device)
+ 
+ 
+ def MakeRecoveryPatch(output_zip, recovery_img, boot_img):
+-- 
+1.8.3.2
+

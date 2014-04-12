@@ -1,0 +1,103 @@
+From 3e343212abe821c9e2577c7fa3b0d4db5cff7e7c Mon Sep 17 00:00:00 2001
+From: dhacker29 <dhackerdvm@gmail.com>
+Date: Sat, 12 Apr 2014 03:11:22 -0500
+Subject: [PATCH 3/3] Fix layout with software nav bar
+
+Change-Id: If63d6d3f04676eaf81b8b017fa7fb9b0c69f6906
+---
+ res/layout/fmradio.xml  |  4 ++--
+ res/layout/navigate.xml | 16 ++++++++--------
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/res/layout/fmradio.xml b/res/layout/fmradio.xml
+index d13f2e0..a807eca 100644
+--- a/res/layout/fmradio.xml
++++ b/res/layout/fmradio.xml
+@@ -79,14 +79,14 @@
+             android:layout_marginLeft="10dip"
+             android:layout_marginRight="20dip"
+             android:layout_width="100dip"
+-            android:layout_height="50dip"/>
++            android:layout_height="35dip"/>
+ 
+         <ImageButton android:id="@+id/btn_onoff"
+             android:src="@drawable/ic_btn_onoff"
+             android:layout_marginLeft="20dip"
+             android:layout_marginRight="10dip"
+             android:layout_width="100dip"
+-            android:layout_height="50dip"/>
++            android:layout_height="35dip"/>
+ 
+     </LinearLayout>
+ 
+diff --git a/res/layout/navigate.xml b/res/layout/navigate.xml
+index 5e6b665..0ee5679 100644
+--- a/res/layout/navigate.xml
++++ b/res/layout/navigate.xml
+@@ -81,27 +81,27 @@
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_gravity="center"
+-         android:layout_marginBottom="5dip"
++         android:layout_marginBottom="2dip"
+          android:gravity="center_horizontal">
+ 
+          <Button android:id="@+id/presets_button_1"
+              android:text="@string/default_station"
+              android:layout_marginLeft="10dip"
+              android:layout_width="90dip"
+-             android:layout_height="55dip" />
++             android:layout_height="40dip" />
+ 
+          <Button android:id="@+id/presets_button_2"
+              android:text="@string/default_station"
+              android:layout_marginLeft="10dip"
+              android:layout_marginRight="10dip"
+              android:layout_width="90dip"
+-             android:layout_height="55dip" />
++             android:layout_height="40dip" />
+ 
+          <Button android:id="@+id/presets_button_3"
+              android:text="@string/default_station"
+              android:layout_marginRight="10dip"
+              android:layout_width="90dip"
+-             android:layout_height="55dip"
++             android:layout_height="40dip"
+              android:visibility="visible" />
+ 
+      </LinearLayout>
+@@ -112,27 +112,27 @@
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_gravity="center"
+-         android:layout_marginBottom="5dip"
++         android:layout_marginBottom="2dip"
+          android:gravity="center_horizontal">
+ 
+          <Button android:id="@+id/presets_button_4"
+              android:text="@string/default_blank"
+              android:layout_marginLeft="10dip"
+              android:layout_width="90dip"
+-             android:layout_height="55dip" />
++             android:layout_height="40dip" />
+ 
+          <Button android:id="@+id/presets_button_5"
+              android:text="@string/default_blank"
+              android:layout_marginLeft="10dip"
+              android:layout_marginRight="10dip"
+              android:layout_width="90dip"
+-             android:layout_height="55dip" />
++             android:layout_height="40dip" />
+ 
+          <ImageButton android:id="@+id/btn_preset_page"
+              android:src="@drawable/preset_page_button"
+              android:layout_marginRight="10dip"
+              android:layout_width="90dip"
+-             android:layout_height="55dip"
++             android:layout_height="40dip"
+              android:visibility="visible" />
+ 
+      </LinearLayout>
+-- 
+1.8.3.2
+

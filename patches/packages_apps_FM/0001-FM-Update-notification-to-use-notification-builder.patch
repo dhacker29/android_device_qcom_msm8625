@@ -1,0 +1,212 @@
+From b95bf79b35840de10e73accf56cad5ba2e3f217a Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Thu, 10 Apr 2014 23:50:48 -0500
+Subject: [PATCH 1/3] FM: Update notification to use notification builder
+
+Make FM notifications look like something from this decade. :P
+
+Change-Id: I1bb8f18502572f976528f7d64a525a71ea2abd6e
+---
+ res/layout/statusbar.xml                          | 29 ---------------
+ res/values/strings.xml                            |  4 +-
+ src/com/quicinc/fmradio/FMRadioService.java       | 45 +++++++++++++----------
+ src/com/quicinc/fmradio/FMTransmitterService.java | 44 ++++++++++++----------
+ 4 files changed, 53 insertions(+), 69 deletions(-)
+ delete mode 100644 res/layout/statusbar.xml
+
+diff --git a/res/layout/statusbar.xml b/res/layout/statusbar.xml
+deleted file mode 100644
+index 5a93b6a..0000000
+--- a/res/layout/statusbar.xml
++++ /dev/null
+@@ -1,29 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="fill_parent"
+-    android:layout_height="fill_parent"
+-    android:orientation="horizontal">
+-
+-    <ImageView android:id="@+id/icon"
+-        android:padding="4dp"
+-        android:gravity="center"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content">
+-    </ImageView>
+-
+-    <LinearLayout
+-        android:layout_width="fill_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical">
+-
+-        <TextView android:id="@+id/frequency"
+-            android:textAppearance="?android:attr/textAppearanceMediumInverse"
+-            android:focusable="true"
+-            android:ellipsize="marquee"
+-            android:singleLine="true"
+-            android:layout_gravity="left"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content" />
+-    </LinearLayout>
+-</LinearLayout>
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index 2ae8840..683da3d 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -79,8 +79,8 @@
+     <string name="preset_search">Search for "<xliff:g id="preset_pi">%1$s</xliff:g>"
+         </string>
+ 
+-    <string name="stat_notif_frequency">FM Radio Station "<xliff:g id="frequency">%1$s</xliff:g>"</string>
+-    <string name="stat_notif_tx_frequency">FM Transmitting at: "<xliff:g id="frequency">%1$s</xliff:g>"</string>
++    <string name="stat_notif_frequency">Station "<xliff:g id="frequency">%1$s</xliff:g>"</string>
++    <string name="stat_notif_tx_frequency">Transmitting at: "<xliff:g id="frequency">%1$s</xliff:g>"</string>
+ 
+ 
+     <string name="sel_band_menu">Select Regional Band</string>
+diff --git a/src/com/quicinc/fmradio/FMRadioService.java b/src/com/quicinc/fmradio/FMRadioService.java
+index 0030506..815d309 100644
+--- a/src/com/quicinc/fmradio/FMRadioService.java
++++ b/src/com/quicinc/fmradio/FMRadioService.java
+@@ -33,6 +33,7 @@ import java.io.IOException;
+ import java.lang.ref.WeakReference;
+ 
+ import android.app.Notification;
++import android.app.Notification.Builder;
+ import android.app.NotificationManager;
+ import android.app.PendingIntent;
+ import android.app.Service;
+@@ -153,6 +154,10 @@ public class FMRadioService extends Service
+ 
+    private static final String IOBUSY_UNVOTE = "com.android.server.CpuGovernorService.action.IOBUSY_UNVOTE";
+ 
++   private Notification.Builder mRadioNotification;
++   private Notification mNotificationInstance;
++   private NotificationManager mNotificationManager;
++
+    public FMRadioService() {
+    }
+ 
+@@ -1255,27 +1260,29 @@ public class FMRadioService extends Service
+ 
+    /* Show the FM Notification */
+    public void startNotification() {
+-      RemoteViews views = new RemoteViews(getPackageName(), R.layout.statusbar);
+-      views.setImageViewResource(R.id.icon, R.drawable.stat_notify_fm);
+-      if (isFmOn())
+-      {
+-         views.setTextViewText(R.id.frequency, getTunedFrequencyString());
+-      } else
+-      {
+-         views.setTextViewText(R.id.frequency, "");
++      mRadioNotification = new Notification.Builder(this)
++              .setSmallIcon(R.drawable.stat_notify_fm)
++              .setOngoing(true)
++              .setWhen(0);
++
++      PendingIntent resultIntent = PendingIntent.getActivity(this, 0,
++              new Intent("com.quicinc.fmradio.FMRADIO_ACTIVITY"), 0);
++      mRadioNotification.setContentIntent(resultIntent);
++
++      mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
++      if (isFmOn()) {
++          mRadioNotification.setContentTitle(getString(R.string.app_name))
++                  .setContentText(getTunedFrequencyString());
++      } else {
++          mRadioNotification.setContentTitle("")
++                  .setContentText("");
+       }
+ 
+-      Notification status = new Notification();
+-      status.contentView = views;
+-      status.flags |= Notification.FLAG_ONGOING_EVENT;
+-      status.icon = R.drawable.stat_notify_fm;
+-      status.contentIntent = PendingIntent.getActivity(this, 0,
+-                                                       new Intent("com.quicinc.fmradio.FMRADIO_ACTIVITY"), 0);
+-      startForeground(FMRADIOSERVICE_STATUS, status);
+-      //NotificationManager nm = (NotificationManager)
+-      //                         getSystemService(Context.NOTIFICATION_SERVICE);
+-      //nm.notify(FMRADIOSERVICE_STATUS, status);
+-      //setForeground(true);
++      mNotificationInstance = mRadioNotification.getNotification();
++      mNotificationManager.notify(FMRADIOSERVICE_STATUS, mNotificationInstance);
++
++      startForeground(FMRADIOSERVICE_STATUS, mNotificationInstance);
++
+       mFMOn = true;
+    }
+ 
+diff --git a/src/com/quicinc/fmradio/FMTransmitterService.java b/src/com/quicinc/fmradio/FMTransmitterService.java
+index 194ce05..d9028e9 100755
+--- a/src/com/quicinc/fmradio/FMTransmitterService.java
++++ b/src/com/quicinc/fmradio/FMTransmitterService.java
+@@ -31,6 +31,7 @@ package com.quicinc.fmradio;
+ import java.lang.ref.WeakReference;
+ 
+ import android.app.Notification;
++import android.app.Notification.Builder;
+ import android.app.NotificationManager;
+ import android.app.PendingIntent;
+ import android.app.Service;
+@@ -101,6 +102,9 @@ public class FMTransmitterService extends Service
+    // interval after which we stop the service when idle
+    private static final int IDLE_DELAY = 60000;
+ 
++   private Notification.Builder mRadioNotification;
++   private Notification mNotificationInstance;
++   private NotificationManager mNotificationManager;
+    private static String RText = " ";
+ 
+    public FMTransmitterService() {
+@@ -321,27 +325,29 @@ public class FMTransmitterService extends Service
+ 
+    /* Show the FM Notification */
+    public void startNotification() {
+-      RemoteViews views = new RemoteViews(getPackageName(), R.layout.statusbar);
+-      views.setImageViewResource(R.id.icon, R.drawable.ic_status_fm_tx);
+-      if (isFmOn())
+-      {
+-         views.setTextViewText(R.id.frequency, getTunedFrequencyString());
+-      } else
+-      {
+-         views.setTextViewText(R.id.frequency, "");
++      mRadioNotification = new Notification.Builder(this)
++              .setSmallIcon(R.drawable.ic_status_fm_tx)
++              .setOngoing(true)
++              .setWhen(0);
++
++      PendingIntent resultIntent = PendingIntent.getActivity(this, 0,
++              new Intent("com.quicinc.fmradio.FMTRANSMITTER_ACTIVITY"), 0);
++      mRadioNotification.setContentIntent(resultIntent);
++
++      mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
++      if (isFmOn()) {
++          mRadioNotification.setContentTitle(getString(R.string.app_name))
++                  .setContentText(getTunedFrequencyString());
++      } else {
++          mRadioNotification.setContentTitle("")
++                  .setContentText("");
+       }
+ 
+-      Notification status = new Notification();
+-      status.contentView = views;
+-      status.flags |= Notification.FLAG_ONGOING_EVENT;
+-      status.icon = R.drawable.ic_status_fm_tx;
+-      status.contentIntent = PendingIntent.getActivity(this, 0,
+-                                                       new Intent("com.quicinc.fmradio.FMTRANSMITTER_ACTIVITY"), 0);
+-      startForeground(FMTRANSMITTERSERVICE_STATUS, status);
+-      //NotificationManager nm = (NotificationManager)
+-      //                         getSystemService(Context.NOTIFICATION_SERVICE);
+-      //nm.notify(FMTRANSMITTERSERVICE_STATUS, status);
+-      //setForeground(true);
++      mNotificationInstance = mRadioNotification.getNotification();
++      mNotificationManager.notify(FMTRANSMITTERSERVICE_STATUS, mNotificationInstance);
++
++      startForeground(FMTRANSMITTERSERVICE_STATUS, mNotificationInstance);
++
+       mFMOn = true;
+    }
+ 
+-- 
+1.8.3.2
+

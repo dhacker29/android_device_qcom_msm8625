@@ -1,0 +1,28 @@
+From 88bd409c55d9c1a208896d3299294fd3ec9a10e6 Mon Sep 17 00:00:00 2001
+From: dhacker29 <dhackerdvm@gmail.com>
+Date: Thu, 10 Apr 2014 23:52:14 -0500
+Subject: [PATCH 1/2] Allow apns-conf to be supplied from device
+
+Change-Id: I5146a370813195ee1a2546036a907f711a8a4efb
+---
+ target/product/full_base_telephony.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/target/product/full_base_telephony.mk b/target/product/full_base_telephony.mk
+index 5899c8c..f7f86bf 100644
+--- a/target/product/full_base_telephony.mk
++++ b/target/product/full_base_telephony.mk
+@@ -26,8 +26,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
+     keyguard.no_require_sim=true \
+     ro.com.android.dataroaming=true
+ 
+-PRODUCT_COPY_FILES := \
+-    device/generic/goldfish/data/etc/apns-conf.xml:system/etc/apns-conf.xml
++#PRODUCT_COPY_FILES := \
++#    device/generic/goldfish/data/etc/apns-conf.xml:system/etc/apns-conf.xml
+ 
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
+-- 
+1.8.3.2
+
