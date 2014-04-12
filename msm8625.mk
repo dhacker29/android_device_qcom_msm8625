@@ -17,6 +17,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     device/qcom/msm8625/apns-conf.xml:/system/etc/apns-conf.xml \
+    device/qcom/msm8625/AudioFilter.csv:/system/etc/AudioFilter.csv \
     device/qcom/msm8625/fstab.msm7627a:/root/fstab.msm7627a \
     device/qcom/msm8625/ft6306.kl:/system/usr/keylayout/ft6306.kl \
     device/qcom/msm8625/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
