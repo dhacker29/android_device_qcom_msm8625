@@ -16,6 +16,10 @@ PRODUCT_PACKAGES += \
 
 # Extras
 PRODUCT_PACKAGES += \
+    CMFileManager \
+    DSPManager \
+    libcyanogen-dsp \
+    audio_effects.conf \
     Trebuchet \
     Superuser \
     su
