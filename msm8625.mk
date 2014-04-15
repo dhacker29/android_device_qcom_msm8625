@@ -25,6 +25,7 @@ PRODUCT_PACKAGES += \
     su
 
 PRODUCT_COPY_FILES += \
+    device/qcom/msm8625/7k_handset.kl:/system/usr/keylayout/7k_handset.kl \
     device/qcom/msm8625/apns-conf.xml:/system/etc/apns-conf.xml \
     device/qcom/msm8625/AudioFilter.csv:/system/etc/AudioFilter.csv \
     device/qcom/msm8625/fstab.msm7627a:/root/fstab.msm7627a \
